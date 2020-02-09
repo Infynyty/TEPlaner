@@ -47,8 +47,6 @@ public class MainViewController {
         stage.setScene(scene);
 
 
-
-
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("Add Lesson");
         stage.showAndWait();
