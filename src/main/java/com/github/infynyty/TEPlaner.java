@@ -1,14 +1,18 @@
 package com.github.infynyty;
 
+import com.github.infynyty.logic.AllLessons;
+import com.github.infynyty.logic.Lesson;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.core.Persister;
 
-import java.io.File;
-import java.io.IOException;
+import java.beans.XMLEncoder;
+import java.io.*;
+import java.util.ArrayList;
 
 public class TEPlaner extends Application {
 
@@ -36,7 +40,13 @@ public class TEPlaner extends Application {
      Website?
      */
 
-    public static void main(String[] args) {
+    public static final String LESSONS_FILE = "lessons.xml";
+    public static void main(String[] args) throws Exception {
+        Serializer serializer = new Persister();
+        File file = new File(LESSONS_FILE);
+        AllLessons allLessons = serializer.read(AllLessons.class, file);
+        AllLessons.setInstance(allLessons);
+        System.out.println(allLessons.getAllLessonsList());
         launch(args);
     }
 
@@ -47,5 +57,18 @@ public class TEPlaner extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("TEPlaner");
         primaryStage.show();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        XMLEncoder encoder = null;
+        try {
+            Serializer serializer = new Persister();
+            File file = new File(LESSONS_FILE);
+            serializer.write(AllLessons.getInstance(), file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        super.stop();
     }
 }

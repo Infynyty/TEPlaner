@@ -77,12 +77,16 @@ public class AddLessonStepController {
             for(MenuItem checkMenuItem : materialCheckBox.getItems()) {
                 if(!(checkMenuItem instanceof CheckMenuItem)) continue;
                 if(((CheckMenuItem) checkMenuItem).isSelected()) {
-                    materials.add(Material.getMaterialByName(checkMenuItem.getText()));
+                    materials.add(Material.getMaterialByName().get(checkMenuItem.getText()));
                 }
             }
         }
         //Lesson Step is created
-        lessonStep = new LessonStep(time, materials, nameField.getText(), groupsNeededCheckBox.isSelected());
+        lessonStep = new LessonStep();
+        lessonStep.setName(nameField.getText());
+        lessonStep.setEstimatedTime(time);
+        lessonStep.setGroupNeeded(groupsNeededCheckBox.isSelected());
+        lessonStep.setMaterials(materials);
         Stage oldStage = (Stage) addStepButton.getScene().getWindow();
         oldStage.close();
         //Window will be reopened again
