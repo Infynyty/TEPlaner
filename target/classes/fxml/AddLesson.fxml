@@ -18,7 +18,7 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="291.0" prefWidth="591.0" />
         </content>
       </ScrollPane>
-      <Button fx:id="addStep" layoutX="687.0" layoutY="84.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="26.0" text="+" />
+      <Button fx:id="addStepButton" layoutX="687.0" layoutY="84.0" mnemonicParsing="false" onAction="#addStep" prefHeight="27.0" prefWidth="26.0" text="+" />
       <Button fx:id="saveLessonButton" layoutX="625.0" layoutY="514.0" mnemonicParsing="false" onAction="#saveLesson" text="Save Lesson" />
       <Button fx:id="closeWindowButton" layoutX="557.0" layoutY="514.0" mnemonicParsing="false" onAction="#closeWindow" text="Close" />
       <Label layoutX="34.0" layoutY="446.0" text="Comment:" />

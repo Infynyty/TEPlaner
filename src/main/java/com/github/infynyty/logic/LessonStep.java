@@ -15,4 +15,20 @@ public class LessonStep {
         this.name = name;
         this.groupNeeded = groupNeeded;
     }
+
+    public int getEstimatedTime() {
+        return estimatedTime;
+    }
+
+    public ArrayList<Material> getMaterials() {
+        return materials;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isGroupNeeded() {
+        return groupNeeded;
+    }
 }

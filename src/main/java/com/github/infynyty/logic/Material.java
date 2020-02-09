@@ -20,6 +20,10 @@ public class Material {
 
     }
 
+    public static Material getMaterialByName(String string) {
+        return null;
+    }
+
     public HashSet<Material> getAllMaterials() {
         return allMaterials;
     }
