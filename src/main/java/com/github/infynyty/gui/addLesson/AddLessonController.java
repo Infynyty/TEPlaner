@@ -1,5 +1,6 @@
 package com.github.infynyty.gui.addLesson;
 
+import com.github.infynyty.gui.lessonView.LessonStepViewController;
 import com.github.infynyty.logic.AllLessons;
 import com.github.infynyty.logic.Lesson;
 import com.github.infynyty.logic.LessonStep;
@@ -22,8 +23,8 @@ import java.util.ArrayList;
 public class AddLessonController {
 
     public static boolean addedLesson;
-    private ArrayList<LessonStep> lessonSteps = new ArrayList<>();
-    private static Lesson lesson;
+    //private ArrayList<LessonStep> lessonSteps = new ArrayList<>();
+    private static Lesson lesson = new Lesson();
 
     @FXML
     private Label errorLabel;
@@ -48,7 +49,8 @@ public class AddLessonController {
 
     @FXML
     void closeWindow(ActionEvent event) {
-
+        Stage stage = (Stage) closeWindowButton.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
@@ -59,21 +61,27 @@ public class AddLessonController {
             return;
         }
 
-        if(lessonSteps.isEmpty()) {
+        if(Lesson.getLessonByName().containsKey(lessonName.getText())) {
+            errorLabel.setText("There is already a lessons with the name \"" + lessonName.getText() + "\"!");
+            errorLabel.setStyle("-fx-text-fill: red;");
+            return;
+        }
+
+        if(lesson.getLessonSteps().isEmpty()) {
             errorLabel.setText("There are no lesson steps!");
             errorLabel.setStyle("-fx-text-fill: red;");
             return;
         }
 
-        Lesson lesson = new Lesson();
         lesson.setName(lessonName.getText());
-        lesson.setLessonSteps(lessonSteps);
         int totalTime = 0;
-        for(LessonStep lessonStep : lessonSteps) {
+        for(LessonStep lessonStep : lesson.getLessonSteps().values()) {
             totalTime += lessonStep.getEstimatedTime();
         }
         lesson.setEstimatedTime(totalTime);
         lesson.setComment(commentField.getText());
+
+        Lesson.getLessonByName().putIfAbsent(lesson.getName(), lesson);
         AllLessons.getInstance().getAllLessonsList().add(lesson);
         addedLesson = true;
         Stage stage = (Stage) saveLessonButton.getScene().getWindow();
@@ -93,13 +101,27 @@ public class AddLessonController {
         if(AddLessonStepController.addedStage) {
             AddLessonStepController.addedStage = false;
             LessonStep lessonStep = AddLessonStepController.getLessonStep();
-            lessonSteps.add(AddLessonStepController.getLessonStep());
+            lesson.getLessonSteps().put(lessonStep.getName(), lessonStep);
             AddLessonStepController.setLessonStep(null);
 
-            Button button = new Button("Name: " + lessonStep.getName() + " // Length: " + lessonStep.getEstimatedTime() +
-                    " // Groups needed: " + lessonStep.isGroupNeeded() + " // Materials: " + lessonStep.getMaterials().toArray().toString());
-            button.setPrefWidth(stepListVBox.getWidth());
+            Button button = new Button(lessonStep.getName());
             stepListVBox.getChildren().add(button);
+            button.setPrefWidth(600);
+
+            button.setOnAction(actionEvent -> {
+                LessonStepViewController.setLessonStep(lesson.getLessonStepsByName().get(button.getText()));
+                Stage stepStage = new Stage();
+                Parent stepRoot = null;
+                try {
+                    stepRoot = FXMLLoader.load(getClass().getResource("/fxml/LessonStepView.fxml"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Scene stepScene = new Scene(stepRoot);
+                stepStage.setScene(stepScene);
+                stepStage.showAndWait();
+            });
 
 
             addStep(event);

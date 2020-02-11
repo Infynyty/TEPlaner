@@ -4,19 +4,20 @@ import org.simpleframework.xml.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 @Root
 public class Lesson implements Serializable {
 
     @Element
     private int estimatedTime;
-    @ElementList(required = false)
-    private ArrayList<LessonStep> lessonSteps = new ArrayList<>();
+    @ElementMap(required = false)
+    private HashMap<String, LessonStep> lessonStepsByName = new HashMap<>();
     @Attribute
     private String name;
     @Element(required = false)
     private String comment;
-    public static ArrayList<Lesson> allLessons = new ArrayList<>();
+    public static HashMap<String, Lesson> lessonByName = new HashMap<>();
 
     //TODO: Add to all lessons
     public Lesson() {
@@ -30,12 +31,16 @@ public class Lesson implements Serializable {
         this.estimatedTime = estimatedTime;
     }
 
-    public ArrayList<LessonStep> getLessonSteps() {
-        return lessonSteps;
+    public HashMap<String, LessonStep> getLessonSteps() {
+        return lessonStepsByName;
     }
 
-    public void setLessonSteps(ArrayList<LessonStep> lessonSteps) {
-        this.lessonSteps = lessonSteps;
+    public void setLessonStepsByName(HashMap<String, LessonStep> lessonStepsByName) {
+        this.lessonStepsByName = lessonStepsByName;
+    }
+
+    public HashMap<String, LessonStep> getLessonStepsByName() {
+        return lessonStepsByName;
     }
 
     public String getName() {
@@ -52,5 +57,9 @@ public class Lesson implements Serializable {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public static HashMap<String, Lesson> getLessonByName() {
+        return lessonByName;
     }
 }

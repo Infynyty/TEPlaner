@@ -44,9 +44,16 @@ public class TEPlaner extends Application {
     public static void main(String[] args) throws Exception {
         Serializer serializer = new Persister();
         File file = new File(LESSONS_FILE);
-        AllLessons allLessons = serializer.read(AllLessons.class, file);
-        AllLessons.setInstance(allLessons);
-        System.out.println(allLessons.getAllLessonsList());
+        try {
+            AllLessons allLessons = serializer.read(AllLessons.class, file);
+            AllLessons.setInstance(allLessons);
+            for(Lesson lesson : allLessons.getAllLessonsList()) {
+                Lesson.getLessonByName().putIfAbsent(lesson.getName(), lesson);
+            }
+        } catch (FileNotFoundException e) {
+
+        }
+
         launch(args);
     }
 

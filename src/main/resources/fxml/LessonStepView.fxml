@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.infynyty.gui.lessonView.LessonStepViewController">
+   <children>
+      <Label layoutX="141.0" layoutY="83.0" text="Name:" />
+      <Label layoutX="138.0" layoutY="116.0" text="Length:" />
+      <Label layoutX="129.0" layoutY="147.0" text="Materials:" />
+      <Label layoutX="94.0" layoutY="183.0" text="Groups needed:" />
+      <Label fx:id="nameLabel" layoutX="243.0" layoutY="83.0" text="Label" />
+      <Label fx:id="materialsLabel" layoutX="243.0" layoutY="147.0" text="Label" />
+      <Label fx:id="lengthLabel" layoutX="243.0" layoutY="116.0" text="Label" />
+      <CheckBox fx:id="groupsNeededCheckBox" layoutX="243.0" layoutY="183.0" mnemonicParsing="false" />
+      <Button fx:id="editButton" layoutX="234.0" layoutY="237.0" mnemonicParsing="false" onAction="#edit" text="Edit" />
+      <Button fx:id="closeButton" layoutX="301.0" layoutY="237.0" mnemonicParsing="false" onAction="#close" text="Close" />
+   </children>
+</AnchorPane>
