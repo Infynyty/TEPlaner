@@ -1,7 +1,7 @@
 package com.github.infynyty.gui.lessonView;
 
-import com.github.infynyty.logic.Lesson;
-import com.github.infynyty.logic.LessonStep;
+import com.github.infynyty.logic.lessons.Lesson;
+import com.github.infynyty.logic.lessons.LessonStep;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 

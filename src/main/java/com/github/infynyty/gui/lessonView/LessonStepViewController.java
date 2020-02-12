@@ -1,8 +1,7 @@
 package com.github.infynyty.gui.lessonView;
 
-import com.github.infynyty.logic.Lesson;
-import com.github.infynyty.logic.LessonStep;
-import com.github.infynyty.logic.Material;
+import com.github.infynyty.logic.lessons.LessonStep;
+import com.github.infynyty.logic.lessons.Material;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

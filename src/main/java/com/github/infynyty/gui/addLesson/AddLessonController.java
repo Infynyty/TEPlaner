@@ -1,9 +1,9 @@
 package com.github.infynyty.gui.addLesson;
 
 import com.github.infynyty.gui.lessonView.LessonStepViewController;
-import com.github.infynyty.logic.AllLessons;
-import com.github.infynyty.logic.Lesson;
-import com.github.infynyty.logic.LessonStep;
+import com.github.infynyty.logic.lessons.AllLessons;
+import com.github.infynyty.logic.lessons.Lesson;
+import com.github.infynyty.logic.lessons.LessonStep;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +18,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class AddLessonController {
 

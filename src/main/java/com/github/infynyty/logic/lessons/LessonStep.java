@@ -1,8 +1,10 @@
-package com.github.infynyty.logic;
+package com.github.infynyty.logic.lessons;
 
-import org.simpleframework.xml.*;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 @Root

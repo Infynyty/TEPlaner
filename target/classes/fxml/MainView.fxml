@@ -20,7 +20,7 @@
       <ToolBar prefHeight="82.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <Button fx:id="addLessonButton" mnemonicParsing="false" onAction="#addLesson" text="Add lesson" />
-            <Button layoutX="10.0" layoutY="25.0" mnemonicParsing="false" text="Show calendar" />
+            <Button fx:id="switchButton" layoutX="10.0" layoutY="25.0" mnemonicParsing="false" onAction="#switchViews" text="Show calendar" />
             <Button layoutX="10.0" layoutY="25.0" mnemonicParsing="false" text="Settings" />
         </items>
       </ToolBar>

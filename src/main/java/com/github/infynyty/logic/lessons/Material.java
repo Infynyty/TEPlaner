@@ -1,14 +1,11 @@
-package com.github.infynyty.logic;
+package com.github.infynyty.logic.lessons;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
 
 @Root
 public class Material {

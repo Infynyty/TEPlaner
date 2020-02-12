@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.infynyty.gui.mainview.MainViewController">
    <children>
       <ScrollPane layoutY="100.0" prefHeight="519.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="81.0">
@@ -20,7 +16,7 @@
       <ToolBar prefHeight="82.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <Button fx:id="addLessonButton" mnemonicParsing="false" onAction="#addLesson" text="Add lesson" />
-            <Button layoutX="10.0" layoutY="25.0" mnemonicParsing="false" text="Show calendar" />
+            <Button fx:id="switchButton" layoutX="10.0" layoutY="25.0" mnemonicParsing="false" onAction="#switchViews" text="Show calendar" />
             <Button layoutX="10.0" layoutY="25.0" mnemonicParsing="false" text="Settings" />
         </items>
       </ToolBar>
