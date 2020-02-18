@@ -24,6 +24,6 @@
       <DatePicker fx:id="datePicker" layoutX="229.0" layoutY="140.0" prefHeight="27.0" prefWidth="161.0" />
       <ChoiceBox fx:id="lessonPicker" layoutX="229.0" layoutY="182.0" prefHeight="27.0" prefWidth="161.0" />
       <Label layoutX="145.0" layoutY="187.0" text="Lesson:" />
-      <Label fx:id="errorLabel" layoutX="152.0" layoutY="338.0" text="Label" />
+      <Label fx:id="errorLabel" layoutX="152.0" layoutY="338.0" />
    </children>
 </AnchorPane>

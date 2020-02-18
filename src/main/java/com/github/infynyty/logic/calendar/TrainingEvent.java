@@ -9,8 +9,12 @@ public class TrainingEvent extends CalendarEvent {
     @Element(name = "lesson")
     private Lesson lesson;
 
-    public TrainingEvent(Date date, String name, @Element(name = "lesson") Lesson lesson) {
-        super(date, name);
+    public TrainingEvent() {
+    }
+
+
+
+    public void setLesson(Lesson lesson) {
         this.lesson = lesson;
     }
 

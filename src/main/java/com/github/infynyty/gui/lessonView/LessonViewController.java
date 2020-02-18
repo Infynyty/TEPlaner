@@ -1,5 +1,6 @@
 package com.github.infynyty.gui.lessonView;
 
+import com.github.infynyty.logic.lessons.AllLessons;
 import com.github.infynyty.logic.lessons.Lesson;
 import com.github.infynyty.logic.lessons.LessonStep;
 import javafx.event.ActionEvent;
@@ -46,6 +47,9 @@ public class LessonViewController {
     @FXML
     private ScrollPane scrollPane;
 
+    @FXML
+    private Button deleteButton;
+
 
     @FXML
     public void initialize() {
@@ -62,9 +66,11 @@ public class LessonViewController {
             Button button = new Button(lessonStep.getName());
             stepsListVBox.getChildren().add(button);
             button.setPrefWidth(600);
+            button.setUserData(lessonStep);
 
             button.setOnAction(actionEvent -> {
-                LessonStepViewController.setLessonStep(lesson.getLessonStepsByName().get(button.getText()));
+                LessonStepViewController.setLessonStep(lessonStep);
+                LessonStepViewController.setLesson(lesson);
                 Stage stage = new Stage();
                 Parent root = null;
                 try {
@@ -92,6 +98,14 @@ public class LessonViewController {
     @FXML
     void edit(ActionEvent event) {
 
+    }
+
+    @FXML
+    void delete(ActionEvent event) {
+        Lesson.getLessonByName().remove(lesson.getName());
+        AllLessons.getInstance().getAllLessonsList().remove(lesson);
+        Stage stage = (Stage) deleteButton.getScene().getWindow();
+        stage.close();
     }
 
     public static void setLesson(Lesson lesson) {

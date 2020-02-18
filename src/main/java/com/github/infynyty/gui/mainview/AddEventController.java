@@ -87,7 +87,6 @@ public class AddEventController {
             errorLabel.setStyle("-fx-text-fill: red;");
             return;
         }
-        CalendarEvent calendarEvent = null;
         ZoneId zoneId = ZoneId.systemDefault();
         if(trainingButton.isSelected()) {
             if(lessonPicker.getValue() == null) {
@@ -96,15 +95,21 @@ public class AddEventController {
                 return;
             }
 
-            calendarEvent = new TrainingEvent(Date.from(datePicker.getValue().atStartOfDay(zoneId).toInstant())
-                    , nameField.getText(), Lesson.getLessonByName().get(lessonPicker.getValue()));
+            TrainingEvent calendarEvent = new TrainingEvent();
+            calendarEvent.setDate(Date.from(datePicker.getValue().atStartOfDay(zoneId).toInstant()));
+            calendarEvent.setName(nameField.getText());
+            calendarEvent.setLesson(Lesson.getLessonByName().get(lessonPicker.getValue()));
+            Calendar.getInstance().getCalendarEventByName().put(calendarEvent.getName(), calendarEvent);
 
         }
         if(customEventButton.isSelected()) {
-            calendarEvent = new CustomEvent(Date.from(datePicker.getValue().atStartOfDay(zoneId).toInstant()),
-                    nameField.getText(), descriptionBox.getText());
+            CustomEvent calendarEvent = new CustomEvent();
+            calendarEvent.setName(nameField.getText());
+            calendarEvent.setDate(Date.from(datePicker.getValue().atStartOfDay(zoneId).toInstant()));
+            calendarEvent.setDescription(descriptionBox.getText());
+            Calendar.getInstance().getCalendarEventByName().put(calendarEvent.getName(), calendarEvent);
         }
-        Calendar.getInstance().getCalendarEventByName().put(calendarEvent.getName(), calendarEvent);
+
         Stage stage = (Stage) saveButton.getScene().getWindow();
         stage.close();
     }

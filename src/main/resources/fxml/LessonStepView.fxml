@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.infynyty.gui.lessonView.LessonStepViewController">
+
+<AnchorPane fx:id="anchorPane" prefHeight="300.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.infynyty.gui.lessonView.LessonStepViewController">
    <children>
       <Label layoutX="141.0" layoutY="83.0" text="Name:" />
       <Label layoutX="138.0" layoutY="116.0" text="Length:" />
@@ -15,5 +17,7 @@
       <CheckBox fx:id="groupsNeededCheckBox" layoutX="243.0" layoutY="183.0" mnemonicParsing="false" />
       <Button fx:id="editButton" layoutX="234.0" layoutY="237.0" mnemonicParsing="false" onAction="#edit" text="Edit" />
       <Button fx:id="closeButton" layoutX="301.0" layoutY="237.0" mnemonicParsing="false" onAction="#close" text="Close" />
+      <Button fx:id="deleteButton" layoutX="156.0" layoutY="237.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
+      <Label fx:id="errorLabel" layoutX="62.0" layoutY="242.0" prefHeight="17.0" prefWidth="0.0" />
    </children>
 </AnchorPane>

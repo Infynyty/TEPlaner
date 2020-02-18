@@ -5,16 +5,21 @@ import org.simpleframework.xml.Root;
 
 import java.util.Date;
 @Root
-public abstract class CalendarEvent {
+public abstract class CalendarEvent implements Comparable<CalendarEvent>{
     @Element(name = "date")
     private Date date;
     @Element(name = "name")
     private String name;
 
-    public CalendarEvent(@Element(name = "date") Date date, @Element(name = "name") String name) {
-        this.date = date;
-        this.name = name;
+    public CalendarEvent() {}
 
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Date getDate() {
@@ -23,5 +28,11 @@ public abstract class CalendarEvent {
 
     public String getName() {
         return name;
+    }
+
+
+    @Override
+    public int compareTo(CalendarEvent calendarEvent) {
+        return this.date.compareTo(calendarEvent.date);
     }
 }

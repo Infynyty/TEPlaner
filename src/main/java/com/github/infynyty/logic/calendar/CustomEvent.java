@@ -8,8 +8,10 @@ public class CustomEvent extends CalendarEvent {
     @Element(name = "description")
     private String description;
 
-    public CustomEvent(Date date, String name, @Element(name = "description") String description) {
-        super(date, name);
+    public CustomEvent(){
+    }
+
+    public void setDescription(String description) {
         this.description = description;
     }
 

@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.infynyty.gui.lessonView.LessonViewController">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.infynyty.gui.lessonView.LessonViewController">
    <children>
       <Label layoutX="110.0" layoutY="62.0" text="Name:" />
       <Label layoutX="108.0" layoutY="91.0" text="Length:" />
@@ -20,7 +25,8 @@
         </content>
       </ScrollPane>
       <TextArea fx:id="commentTextBox" layoutX="183.0" layoutY="284.0" prefHeight="86.0" prefWidth="235.0" />
-      <Button fx:id="closeButton" layoutX="518.0" layoutY="343.0" mnemonicParsing="false" onAction="#close" text="Close" />
-      <Button fx:id="editButton" layoutX="461.0" layoutY="343.0" mnemonicParsing="false" onAction="#edit" text="Edit" />
+      <Button fx:id="closeButton" layoutX="562.0" layoutY="342.0" mnemonicParsing="false" onAction="#close" text="Close" />
+      <Button fx:id="editButton" layoutX="504.0" layoutY="342.0" mnemonicParsing="false" onAction="#edit" text="Edit" />
+      <Button fx:id="deleteButton" layoutX="431.0" layoutY="342.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
    </children>
 </AnchorPane>

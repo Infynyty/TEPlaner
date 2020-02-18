@@ -4,8 +4,10 @@ import com.github.infynyty.gui.addLesson.AddLessonController;
 import com.github.infynyty.gui.lessonView.LessonViewController;
 import com.github.infynyty.logic.calendar.Calendar;
 import com.github.infynyty.logic.calendar.CalendarEvent;
+import com.github.infynyty.logic.calendar.TrainingEvent;
 import com.github.infynyty.logic.lessons.AllLessons;
 import com.github.infynyty.logic.lessons.Lesson;
+import com.github.infynyty.logic.lessons.LessonStep;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +21,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collection;
 
 public class MainViewController {
 
@@ -102,9 +106,15 @@ public class MainViewController {
             switchButton.setText("Show lessons");
             addLessonButton.setText("Add events");
             calendar.getChildren().clear();
-            for(CalendarEvent calendarEvent : Calendar.getInstance().getCalendarEventByName().values()) {
+            Collection<CalendarEvent> allCalendarEvents = Calendar.getInstance().getCalendarEventByName().values();
+            CalendarEvent[] calendarEvents = allCalendarEvents.toArray(new CalendarEvent[allCalendarEvents.size()]);
+            Arrays.sort(calendarEvents);
+            for(CalendarEvent calendarEvent : calendarEvents) {
                 Button button = new Button(calendarEvent.getName());
                 button.setUserData(calendarEvent);
+                button.setPrefWidth(1200);
+                button.setPrefHeight(50);
+                calendar.getChildren().add(button);
                 button.setOnAction(actionEvent -> {
                     //TODO: Add
 
@@ -124,7 +134,6 @@ public class MainViewController {
         for(Lesson lesson : AllLessons.getInstance().getAllLessonsList()) {
             Button button = new Button(lesson.getName());
             button.setTooltip(new Tooltip("Name: " + lesson.getName() + "\nLength: " + lesson.getEstimatedTime()));
-            System.out.println(calendar.getWidth());
             button.setPrefWidth(1200);
             button.setPrefHeight(50);
             calendar.getChildren().add(button);
