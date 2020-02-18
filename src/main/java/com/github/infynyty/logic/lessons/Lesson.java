@@ -64,4 +64,6 @@ public class Lesson implements Serializable {
     public static HashMap<String, Lesson> getLessonByName() {
         return lessonByName;
     }
+
+
 }

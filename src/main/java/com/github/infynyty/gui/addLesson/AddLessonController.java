@@ -100,6 +100,9 @@ public class AddLessonController {
         if(AddLessonStepController.addedStage) {
             AddLessonStepController.addedStage = false;
             LessonStep lessonStep = AddLessonStepController.getLessonStep();
+
+            //All lessonsteps are numbered from 0 to n
+            lessonStep.setIndex(lesson.getLessonSteps().size());
             lesson.getLessonSteps().put(lessonStep.getName(), lessonStep);
             AddLessonStepController.setLessonStep(null);
 

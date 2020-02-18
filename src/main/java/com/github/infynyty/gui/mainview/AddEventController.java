@@ -1,11 +1,19 @@
 package com.github.infynyty.gui.mainview;
 
+import com.github.infynyty.logic.calendar.Calendar;
+import com.github.infynyty.logic.calendar.CalendarEvent;
+import com.github.infynyty.logic.calendar.CustomEvent;
+import com.github.infynyty.logic.calendar.TrainingEvent;
 import com.github.infynyty.logic.lessons.Lesson;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+
+import java.time.ZoneId;
+import java.util.Date;
 
 public class AddEventController {
 
@@ -32,6 +40,9 @@ public class AddEventController {
 
     @FXML
     private ChoiceBox<String> lessonPicker = new ChoiceBox<>();
+
+    @FXML
+    private Label errorLabel;
 
     @FXML
     public void initialize() {
@@ -66,7 +77,36 @@ public class AddEventController {
 
     @FXML
     void save(ActionEvent event) {
+        if(nameField.getText().isBlank()) {
+            errorLabel.setText("Please enter a name!");
+            errorLabel.setStyle("-fx-text-fill: red;");
+            return;
+        }
+        if(datePicker.getValue() == null) {
+            errorLabel.setText("Please enter a date!");
+            errorLabel.setStyle("-fx-text-fill: red;");
+            return;
+        }
+        CalendarEvent calendarEvent = null;
+        ZoneId zoneId = ZoneId.systemDefault();
+        if(trainingButton.isSelected()) {
+            if(lessonPicker.getValue() == null) {
+                errorLabel.setText("Please select a lesson!");
+                errorLabel.setStyle("-fx-text-fill: red;");
+                return;
+            }
 
+            calendarEvent = new TrainingEvent(Date.from(datePicker.getValue().atStartOfDay(zoneId).toInstant())
+                    , nameField.getText(), Lesson.getLessonByName().get(lessonPicker.getValue()));
+
+        }
+        if(customEventButton.isSelected()) {
+            calendarEvent = new CustomEvent(Date.from(datePicker.getValue().atStartOfDay(zoneId).toInstant()),
+                    nameField.getText(), descriptionBox.getText());
+        }
+        Calendar.getInstance().getCalendarEventByName().put(calendarEvent.getName(), calendarEvent);
+        Stage stage = (Stage) saveButton.getScene().getWindow();
+        stage.close();
     }
 
 }

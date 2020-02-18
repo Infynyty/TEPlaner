@@ -15,6 +15,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 
 public class LessonViewController {
 
@@ -48,7 +53,12 @@ public class LessonViewController {
         lengthLabel.setText(lesson.getEstimatedTime() + "");
         commentTextBox.setDisable(true);
         commentTextBox.setText(lesson.getComment());
-        for(LessonStep lessonStep : lesson.getLessonSteps().values()) {
+
+        Collection<LessonStep> allSteps = lesson.getLessonSteps().values();
+        LessonStep[] lessonSteps = allSteps.toArray(new LessonStep[allSteps.size()]);
+        Arrays.sort(lessonSteps);
+
+        for(LessonStep lessonStep : lessonSteps) {
             Button button = new Button(lessonStep.getName());
             stepsListVBox.getChildren().add(button);
             button.setPrefWidth(600);
@@ -66,6 +76,7 @@ public class LessonViewController {
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.showAndWait();
+
             });
         }
     }

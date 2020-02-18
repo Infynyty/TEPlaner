@@ -71,7 +71,6 @@ public class MainViewController {
                         lessonRoot = FXMLLoader.load(getClass().getResource("/fxml/LessonView.fxml"));
                     } catch (IOException e) {
                         e.printStackTrace();
-                        System.out.println("Failed");
                     }
 
                     Scene lessonScene = new Scene(lessonRoot);
@@ -138,7 +137,6 @@ public class MainViewController {
                     root = FXMLLoader.load(getClass().getResource("/fxml/LessonView.fxml"));
                 } catch (IOException e) {
                     e.printStackTrace();
-                    System.out.println("Failed");
                 }
 
                 Scene scene = new Scene(root);

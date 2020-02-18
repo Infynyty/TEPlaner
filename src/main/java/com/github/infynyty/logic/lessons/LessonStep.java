@@ -8,7 +8,7 @@ import org.simpleframework.xml.Root;
 import java.util.ArrayList;
 
 @Root
-public class LessonStep {
+public class LessonStep implements Comparable<LessonStep>{
 
     @Element
     private int estimatedTime;
@@ -18,6 +18,8 @@ public class LessonStep {
     private String name;
     @Element
     private boolean groupNeeded = false;
+    @Element
+    private int index;
 
     public LessonStep() {}
 
@@ -51,5 +53,18 @@ public class LessonStep {
 
     public void setGroupNeeded(boolean groupNeeded) {
         this.groupNeeded = groupNeeded;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    @Override
+    public int compareTo(LessonStep lessonStep) {
+        return this.index - lessonStep.index;
     }
 }
